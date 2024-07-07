@@ -73,6 +73,8 @@ static ToolbarButtonInfo gToolbarButtons[] = {
     {TbIcon::None, 0, nullptr}, // separator
     {TbIcon::LayoutContinuous, CmdZoomFitWidthAndContinuous, _TRN("Fit Width and Show Pages Continuously")},
     {TbIcon::LayoutSinglePage, CmdZoomFitPageAndSinglePage, _TRN("Fit a Single Page")},
+    {TbIcon::LayoutFacingContinuous, CmdZoomFacingPagesAndContinuous, _TRN("Facing Pages and Show Pages Continuously")},
+    {TbIcon::LayoutFacingPages, CmdZoomFitPageAndFacingPages, _TRN("Fit Facing Pages")},
     {TbIcon::RotateLeft, CmdRotateLeft, _TRN("Rotate &Left")},
     {TbIcon::RotateRight, CmdRotateRight, _TRN("Rotate &Right")},
     {TbIcon::ZoomOut, CmdZoomOut, _TRN("Zoom Out")},
@@ -116,6 +118,8 @@ static bool IsVisibleToolbarButton(MainWindow* win, int buttonNo) {
     switch (gToolbarButtons[buttonNo].cmdId) {
         case CmdZoomFitWidthAndContinuous:
         case CmdZoomFitPageAndSinglePage:
+        case CmdZoomFacingPagesAndContinuous:
+        case CmdZoomFitPageAndFacingPages:
             return !win->AsChm();
         case CmdRotateLeft:
         case CmdRotateRight:
@@ -511,6 +515,20 @@ void UpdateToolbarState(MainWindow* win) {
         state &= ~TBSTATE_CHECKED;
     }
     SendMessageW(hwnd, TB_SETSTATE, CmdZoomFitPageAndSinglePage, state);
+
+    if (dm == DisplayMode::ContinuousFacing && zoomVirtual == kZoomFitWidth) {
+        state |= TBSTATE_CHECKED;
+    } else {
+        state &= ~TBSTATE_CHECKED;
+    }
+    SendMessageW(hwnd, TB_SETSTATE, CmdZoomFacingPagesAndContinuous, state);
+
+    if (dm == DisplayMode::Facing && zoomVirtual == kZoomFitPage) {
+        state |= TBSTATE_CHECKED;
+    } else {
+        state &= ~TBSTATE_CHECKED;
+    }
+    SendMessageW(hwnd, TB_SETSTATE, CmdZoomFitPageAndFacingPages, state);
 
     isChecked |= (state & TBSTATE_CHECKED);
     if (!isChecked) {

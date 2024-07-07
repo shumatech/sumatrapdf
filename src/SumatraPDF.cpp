@@ -3609,14 +3609,19 @@ static void OnMenuZoom(MainWindow* win, int menuId) {
     ZoomToSelection(win, zoom);
 }
 
-static void ChangeZoomLevel(MainWindow* win, float newZoom, bool pagesContinuously) {
+static void ChangeZoomLevel(MainWindow* win, float newZoom, bool pagesContinuously, bool facingPages) {
     if (!win->IsDocLoaded()) {
         return;
     }
 
     float zoom = win->ctrl->GetZoomVirtual();
     DisplayMode mode = win->ctrl->GetDisplayMode();
-    DisplayMode newMode = pagesContinuously ? DisplayMode::Continuous : DisplayMode::SinglePage;
+    DisplayMode newMode;
+    if (facingPages) {
+        newMode = pagesContinuously ? DisplayMode::ContinuousFacing : DisplayMode::Facing;
+    } else {
+        newMode = pagesContinuously ? DisplayMode::Continuous : DisplayMode::SinglePage;
+    }
 
     if (mode != newMode || zoom != newZoom) {
         float prevZoom = win->CurrentTab()->prevZoomVirtual;
@@ -4842,11 +4847,19 @@ static LRESULT FrameOnCommand(MainWindow* win, HWND hwnd, UINT msg, WPARAM wp, L
             break;
 
         case CmdZoomFitWidthAndContinuous:
-            ChangeZoomLevel(win, kZoomFitWidth, true);
+            ChangeZoomLevel(win, kZoomFitWidth, true, false);
             break;
 
         case CmdZoomFitPageAndSinglePage:
-            ChangeZoomLevel(win, kZoomFitPage, false);
+            ChangeZoomLevel(win, kZoomFitPage, false, false);
+            break;
+
+        case CmdZoomFacingPagesAndContinuous:
+            ChangeZoomLevel(win, kZoomFitWidth, true, true);
+            break;
+
+        case CmdZoomFitPageAndFacingPages:
+            ChangeZoomLevel(win, kZoomFitPage, false, true);
             break;
 
         case CmdZoomIn: {

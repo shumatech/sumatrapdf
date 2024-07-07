@@ -58,6 +58,24 @@ static const char* gIconLayoutSinglePage =
   <rect x="4" y="4" width="16" height="16" rx="2" />
 </svg>)";
 
+
+// https://github.com/tabler/tabler-icons/blob/master/icons/layout-rows.svg
+static const char* gIconLayoutFacingContinuous =
+    R"(<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke = "none" d = "M0 0h24v24H0z" fill = "none" />
+  <path d = "M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+  <path d = "M12 4l0 16" />
+  <path d = "M4 12l16 0" />
+ </svg >)";
+
+// https://github.com/tabler/tabler-icons/blob/master/icons/layout-rows.svg
+static const char* gIconLayoutFacingPages =
+    R"(<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke = "none" d = "M0 0h24v24H0z" fill = "none" />
+  <path d = "M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+  <path d = "M12 4l0 16" />
+ </svg >)";
+
 // https://github.com/tabler/tabler-icons/blob/master/icons/chevron-left.svg
 static const char* gIconSearchPrev =
     R"(<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -143,6 +161,8 @@ static const char* gAllIcons[] = {
     gIconPageNext,
     gIconLayoutContinuous,
     gIconLayoutSinglePage,
+    gIconLayoutFacingContinuous,
+    gIconLayoutFacingPages,
     gIconZoomOut,
     gIconZoomIn,
     gIconSearchPrev,

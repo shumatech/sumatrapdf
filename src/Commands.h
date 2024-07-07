@@ -97,6 +97,8 @@ Cmd* enum (e.g. CmdOpen) and a human-readable name (not used yet).
     V(CmdZoomOut, "Zoom Out")                                             \
     V(CmdZoomFitWidthAndContinuous, "Zoom: Fit Width And Continuous")     \
     V(CmdZoomFitPageAndSinglePage, "Zoom: Fit Page and Single Page")      \
+    V(CmdZoomFacingPagesAndContinuous, "Zoom: Facing Pages And Continuous") \
+    V(CmdZoomFitPageAndFacingPages, "Zoom: Fit Pages And Facing Pages")   \
     V(CmdContributeTranslation, "Contribute Translation")                 \
     V(CmdOpenWithFirst, "don't use")                                      \
     V(CmdOpenWithExplorer, "Open Directory In Explorer")                  \

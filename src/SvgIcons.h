@@ -12,6 +12,8 @@ enum class TbIcon {
     PageNext,
     LayoutContinuous,
     LayoutSinglePage,
+    LayoutFacingContinuous,
+    LayoutFacingPages,
     ZoomOut,
     ZoomIn,
     SearchPrev,
